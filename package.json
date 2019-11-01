@@ -1,0 +1,50 @@
+{
+  "name": "frontj",
+  "version": "0.1.0",
+  "description": "Static HTML generator.",
+  "main": "dist-cjs/index.js",
+  "module": "dist-esm/index.js",
+  "types": "dist-cjs/index.d.ts",
+  "scripts": {
+    "lint": "eslint src/**/*.ts",
+    "fix": "eslint src/**/*.ts --fix",
+    "build": "run-p build:*",
+    "build:cjs": "tsc --module commonjs --outDir ./dist-cjs",
+    "build:esm": "tsc --module es2015 --outDir ./dist-esm"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siromath/frontJ.git"
+  },
+  "keywords": [
+    "frontj",
+    "javascript"
+  ],
+  "author": "siromath",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/siromath/frontJ/issues"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "eslint": "^6.6.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^3.6.4"
+  }
+}
