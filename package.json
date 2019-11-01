@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "fix": "eslint src/**/*.ts --fix",
-    "build": "run-p build:*",
+    "build": "run-s build:*",
     "build:cjs": "tsc --module commonjs --outDir ./dist-cjs",
     "build:esm": "tsc --module es2015 --outDir ./dist-esm"
   },
