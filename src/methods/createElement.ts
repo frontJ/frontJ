@@ -19,7 +19,7 @@ export function createElement (
       // children: trueの場合は子要素あり、そうでない場合は子要素なし(入力しても無視)かつ閉じタグなし
       if (createElementOptions.children) {
         const content = contents.join('')
-        return `<${name}${attrString ? ` ${attrString}` : ''}>${content}</${name}>`
+        return `${name === 'html' ? '<!DOCTYPE html>' : ''}<${name}${attrString ? ` ${attrString}` : ''}>${content}</${name}>`
       } else {
         return `<${name}${attrString ? ` ${attrString}` : ''}>`
       }
@@ -30,7 +30,7 @@ export function createElement (
       // children: trueの場合は子要素あり、そうでない場合は子要素なし(入力しても無視)かつ閉じタグなし
       if (createElementOptions.children) {
         const content = optionsOrContent + contents.join('')
-        return `<${name}>${content}</${name}>`
+        return `${name === 'html' ? '<!DOCTYPE html>' : ''}<${name}>${content}</${name}>`
       } else {
         return `<${name}>`
       }
@@ -39,7 +39,7 @@ export function createElement (
     // 何も渡されなかった場合
     if (createElementOptions.children) {
       // children: trueの場合は閉じタグあり、そうでない場合は閉じタグなし
-      return `<${name}></${name}>`
+      return `${name === 'html' ? '<!DOCTYPE html>' : ''}<${name}></${name}>`
     } else {
       return `<${name}>`
     }
