@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/siromath/frontJ.git"
+    "url": "https://github.com/frontJ/frontJ"
   },
   "keywords": [
     "frontj",
@@ -33,7 +33,7 @@
   "author": "siromath",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/siromath/frontJ/issues"
+    "url": "https://github.com/frontJ/frontJ/issues"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.6.0",
