@@ -10,7 +10,8 @@
     "fix": "eslint src/**/*.ts --fix",
     "build": "run-s build:*",
     "build:cjs": "tsc --module commonjs --outDir ./dist-cjs",
-    "build:esm": "tsc --module es2015 --outDir ./dist-esm"
+    "build:esm": "tsc --module es2015 --outDir ./dist-esm",
+    "prepublish": "npm run lint && npm run build"
   },
   "husky": {
     "hooks": {
