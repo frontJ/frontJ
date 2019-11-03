@@ -67,6 +67,8 @@ HTML(整形後):
 </html>
 ```
 
+`createElement`メソッドで各要素を生成する代わりに、[@frontj/elements](https://github.com/frontJ/elements)パッケージからimportすることを推奨します。
+
 ## Documentation
 
 ### Methods
