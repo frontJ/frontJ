@@ -26,7 +26,8 @@
   },
   "keywords": [
     "frontj",
-    "javascript"
+    "javascript",
+    "typescript"
   ],
   "author": "siromath",
   "license": "MIT",
