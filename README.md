@@ -20,6 +20,7 @@ const h1 = createElement('h1')
 const p = createElement('p')
 const br = createElement('br', { children: false })
 const input = createElement('input', { children: false })
+const div = createElement('div')
 
 const text = (...contents) => p(
   {
@@ -44,7 +45,8 @@ const contents = html(
           checked: ''
         }
       }
-    )
+    ),
+    div({ attrs: '#id.class1.class2' })
   )
 )
 
@@ -63,6 +65,7 @@ HTML(整形後):
     <h1 class="heading">Hello!</h1>
     <p class="text">foo<br>bar</p>
     <input type="checkbox" checked>
+    <div id="id" class="class1 class2"></div>
   </body>
 </html>
 ```
@@ -139,13 +142,13 @@ FrontJCreateElementOptions {
 
 ```typescript
 FrontJElementOptions {
-  attrs: FrontJAttrsObject;
+  attrs: FrontJAttrsObject | string;
 }
 ```
 
 | 引数 | 説明 |
 | --- | --- |
-| attrs | HTML要素の属性を設定するオブジェクトです。設定項目は`FrontJAttrsObject`型の項目に記載しています。 |
+| attrs | HTML要素の属性を設定するオブジェクトまたはCSSセレクタ(のような)文字列です。オブジェクトの設定項目は`FrontJAttrsObject`型の項目に記載しています。文字列では現状`id`, `class`属性の指定ができますが、将来的に任意の属性についてサポートする予定です([#1](https://github.com/frontJ/frontJ/issues/1))。`id`, `class`属性以外も指定したい場合はオブジェクトを使用してください。 |
 
 ## License
 
