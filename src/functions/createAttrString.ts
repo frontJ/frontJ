@@ -1,7 +1,7 @@
-import { FrontJAttrsObject } from '../types'
+import { FrontJAttrsObject, FrontJElementOptions } from '../types'
 import { getAttrValuesFromFrontJCssSelector, isFrontJAttrsObject, isString } from './index'
 
-export function createAttrString (attrs: FrontJAttrsObject | string = {}): string {
+export function createAttrString (attrs: FrontJElementOptions['attrs'] = {}): string {
   if (isFrontJAttrsObject(attrs)) {
     const attrNames = Object.keys(attrs)
 

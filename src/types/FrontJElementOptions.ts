@@ -1,5 +1,5 @@
 import { FrontJAttrsObject } from './index'
 
 export interface FrontJElementOptions {
-  attrs: FrontJAttrsObject;
+  attrs: FrontJAttrsObject | string;
 }
