@@ -1,6 +1,6 @@
 import { FrontJCreateElementOptions, FrontJElement } from '../types'
 import { defaultCreateElementOptions } from '../constants'
-import { createAttrString } from '../functions'
+import { createAttrString, isFrontJElementOptions, isString } from '../functions'
 
 export function createElement (
   name: string,
@@ -8,11 +8,7 @@ export function createElement (
 ): FrontJElement {
   return (optionsOrContent, ...contents) => {
     // optionsOrContentにオプションが渡された場合
-    if (
-      typeof optionsOrContent === 'object' &&
-      optionsOrContent !== null &&
-      !Array.isArray(optionsOrContent)
-    ) {
+    if (isFrontJElementOptions(optionsOrContent)) {
       const options = optionsOrContent
       const attrString = createAttrString(options && options.attrs)
 
@@ -26,7 +22,7 @@ export function createElement (
     }
 
     // optionsOrContentに文字列が渡された場合
-    if (typeof optionsOrContent === 'string') {
+    if (isString(optionsOrContent)) {
       // children: trueの場合は子要素あり、そうでない場合は子要素なし(入力しても無視)かつ閉じタグなし
       if (createElementOptions.children) {
         const content = optionsOrContent + contents.join('')
