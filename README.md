@@ -160,9 +160,9 @@ FrontJElementOptions {
 
 ```typescript
 // 設定例
-div({ attrs: '.foo#bar[attr1][attr2="val"][[attr3]="[val]"]' })
+div({ attrs: '.foo#bar[attr1][[attr2]="[val]"][class="baz"]' })
 
-// => <div attr1 attr2="val" [attr3]="[val]" id="bar" class="foo"></div>
+// => <div attr1 [attr2]="[val]" class="baz foo" id="bar"></div>
 ```
 
 ## License
