@@ -1,5 +1,5 @@
 import { createAttrString } from './createAttrString'
-import { getAttrValuesFromFrontJCssSelector } from './getAttrValuesFromFrontJCssSelector'
+import { hasOwnProperty } from './hasOwnProperty'
 import { isArray } from './isArray'
 import { isFrontJAttrsObject } from './isFrontJAttrsObject'
 import { isFrontJElementOptions } from './isFrontJElementOptions'
@@ -8,7 +8,7 @@ import { isString } from './isString'
 
 export {
   createAttrString,
-  getAttrValuesFromFrontJCssSelector,
+  hasOwnProperty,
   isArray,
   isFrontJAttrsObject,
   isFrontJElementOptions,
