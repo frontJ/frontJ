@@ -38,14 +38,7 @@ const contents = html(
   body(
     h1({ attrs: { class: 'heading' } }, 'Hello!'),
     text('foo', br(), 'bar'),
-    input(
-      {
-        attrs: {
-          type: 'checkbox',
-          checked: ''
-        }
-      }
-    ),
+    input(attrs('[type="checkbox"][checked]')),
     div({ attrs: '#id.class1.class2' })
   )
 )
@@ -70,11 +63,26 @@ HTML(整形後):
 </html>
 ```
 
+サンプルのため、属性について色々な記法で書いています。
+
 `createElement`メソッドで各要素を生成する代わりに、[@frontj/elements](https://github.com/frontJ/elements)パッケージからimportすることを推奨します。
 
 ## Documentation
 
 ### Methods
+
+### `attrs`
+
+`attrs`プロパティを持ち、その値が入力引数であるオブジェクトを返します。
+`FrontJElement`関数の`optionsOrContent`引数にオブジェクトを渡す際に有用です。
+
+```typescript
+attrs(attrs: FrontJElementOptions['attrs']): { attrs: FrontJElementOptions['attrs'] }
+```
+
+| 引数 | 説明 |
+| --- | --- |
+| attrs | `FrontJElementOptions['attrs']`型の値。 |
 
 #### `createElement`
 
@@ -148,7 +156,14 @@ FrontJElementOptions {
 
 | 引数 | 説明 |
 | --- | --- |
-| attrs | HTML要素の属性を設定するオブジェクトまたはCSSセレクタ(のような)文字列です。オブジェクトの設定項目は`FrontJAttrsObject`型の項目に記載しています。文字列では現状`id`, `class`属性の指定ができますが、将来的に任意の属性についてサポートする予定です([#1](https://github.com/frontJ/frontJ/issues/1))。`id`, `class`属性以外も指定したい場合はオブジェクトを使用してください。 |
+| attrs | HTML要素の属性を設定するオブジェクトまたはCSSセレクタ(のような)文字列です。オブジェクトの設定項目は`FrontJAttrsObject`型の項目に記載しています。文字列では下記のように設定できます。 |
+
+```typescript
+// 設定例
+div({ attrs: '.foo#bar[attr1][attr2="val"][[attr3]="[val]"]' })
+
+// => <div attr1 attr2="val" [attr3]="[val]" id="bar" class="foo"></div>
+```
 
 ## License
 
