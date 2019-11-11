@@ -71,7 +71,7 @@ HTML(整形後):
 
 ### Methods
 
-### `attrs`
+#### `attrs`
 
 `attrs`プロパティを持ち、その値が入力引数であるオブジェクトを返します。
 `FrontJElement`関数の`optionsOrContent`引数にオブジェクトを渡す際に有用です。
