@@ -70,7 +70,7 @@ export function createAttrString (attrs: FrontJElementOptions['attrs'] = {}): st
 
         if (!hasOwnProperty(_attrs, attrName)) {
           // この属性名のプロパティが存在しなければ作成
-          _attrs[attrName] = !isNull(attrValueMatches) ? attrValueMatches : []
+          _attrs[attrName] = attrValueMatches ?? []
         } else if (!isNull(attrValueMatches)) {
           // この属性名のプロパティが既に存在していればpush
           // 前のif文で_attrs[attrName]はstring[]になっているのでasを使う

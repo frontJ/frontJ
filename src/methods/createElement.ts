@@ -10,7 +10,7 @@ export function createElement (
     // optionsOrContentにオプションが渡された場合
     if (isFrontJElementOptions(optionsOrContent)) {
       const options = optionsOrContent
-      const attrString = createAttrString(options && options.attrs)
+      const attrString = createAttrString(options?.attrs)
 
       // children: trueの場合は子要素あり、そうでない場合は子要素なし(入力しても無視)かつ閉じタグなし
       if (createElementOptions.children) {
