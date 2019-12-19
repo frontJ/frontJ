@@ -113,12 +113,25 @@ createElement(name: string, options: FrontJCreateElementOptions): FrontJElement
 // `FrontJElement`の部分は実際にはタグ名などになります。
 
 FrontJElement(optionsOrContent?: FrontJElementOptions | string, ...contents: string[] | undefined[]): string
+
+// or
+
+FrontJElement`attrsString`: FrontJElement
 ```
 
 | 引数 | 説明 |
 | --- | --- |
 | optionsOrContent | オブジェクトが渡された場合は属性などの設定、文字列が渡された場合はHTML要素内にその文字列が出力されます。設定項目は[`FrontJElementOptions`](#frontjelementoptions)型の項目に記載しています。 |
 | contents | 省略可能で、カンマ区切りで文字列を渡せます。渡された文字列は結合されHTML要素内に出力されます。 |
+
+[`FrontJElementOptions`](#frontjelementoptions)型の`attrs`プロパティに指定できる文字列をテンプレート文字列で渡すと、`attrs`を指定済みの`FrontJElement`が返ります。
+
+```typescript
+div`.foo`('text') // => div({ attrs: '.foo' }, 'text')と同様
+div`.foo`({ option: '' }, 'text') // => div({ option: '', attrs: '.foo' }, 'text')と同様
+div`.foo`({ option: '', attrs: '.bar' }, 'text') // => div({ option: '', attrs: '.bar' }, 'text')と同様(上書きされる)
+div`.foo``.bar`() // => これは不可能です
+```
 
 ### Types
 

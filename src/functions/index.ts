@@ -5,6 +5,7 @@ import { isFrontJAttrsObject } from './isFrontJAttrsObject'
 import { isFrontJElementOptions } from './isFrontJElementOptions'
 import { isNull } from './isNull'
 import { isString } from './isString'
+import { isTemplateStringsArray } from './isTemplateStringsArray'
 
 export {
   createAttrString,
@@ -13,5 +14,6 @@ export {
   isFrontJAttrsObject,
   isFrontJElementOptions,
   isNull,
-  isString
+  isString,
+  isTemplateStringsArray
 }
