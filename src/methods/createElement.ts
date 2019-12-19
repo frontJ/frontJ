@@ -1,23 +1,12 @@
 import { FrontJCreateElementOptions, FrontJElement } from '../types'
 import { defaultCreateElementOptions } from '../constants'
-import { createAttrString, isFrontJElementOptions, isString, isTemplateStringsArray } from '../functions'
+import { createAttrString, isFrontJElementOptions, isString } from '../functions'
 
 export function createElement (
   name: string,
   createElementOptions: FrontJCreateElementOptions = defaultCreateElementOptions
 ): FrontJElement {
-  const _FrontJElement: FrontJElement = (optionsOrContent, ...contents) => {
-    // テンプレート文字列が渡された場合
-    if (isTemplateStringsArray(optionsOrContent)) {
-      const attrs = optionsOrContent.reduce((p, c, i) => p + c + (contents[i] ?? ''), '')
-      return (_optionsOrContent, ..._contents) => {
-        if (isFrontJElementOptions(_optionsOrContent)) {
-          return _FrontJElement({ attrs, ..._optionsOrContent }, ..._contents)
-        }
-        return _FrontJElement({ attrs: attrs }, _optionsOrContent, ..._contents)
-      }
-    }
-
+  return (optionsOrContent, ...contents) => {
     // optionsOrContentにオプションが渡された場合
     if (isFrontJElementOptions(optionsOrContent)) {
       const options = optionsOrContent
@@ -51,6 +40,4 @@ export function createElement (
       return `<${name}>`
     }
   }
-
-  return _FrontJElement
 }
