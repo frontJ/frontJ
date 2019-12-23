@@ -112,7 +112,7 @@ createElement(name: string, options: FrontJCreateElementOptions): FrontJElement
 ```typescript
 // `FrontJElement`の部分は実際にはタグ名などになります。
 
-FrontJElement(optionsOrContent?: FrontJElementOptions | string, ...contents: string[] | undefined[]): string
+FrontJElement(optionsOrContent?: FrontJElementOptions | string, ...contents: string[]): string
 ```
 
 | 引数 | 説明 |
