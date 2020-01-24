@@ -77,6 +77,40 @@ HTMLファイルの出力には[@frontj/builder](https://github.com/frontJ/build
 
 ### Methods
 
+#### `_if`
+
+`condition`引数の値によって`value`または`elseValue`の値を返します。
+[`FrontJElement`](#frontjelement)関数内で値を出し分ける際に有用です。
+
+```typescript
+_if(condition: boolean, value: string, elseValue = ''): string
+```
+
+| 引数 | 説明 |
+| --- | --- |
+| condition | この値が`true`の場合は`value`の値、`false`の場合は`elseValue`の値が返されます。 |
+| value | `condition`が`true`の場合に返される値。 |
+| elseValue | `condition`が`false`の場合に返される値。初期値は空文字です。 |
+
+```typescript
+const hasPosts = false
+
+div(
+  h2('関連記事'),
+  _if(hasPosts,
+    article(/* ... */),
+    p('記事が見つかりませんでした。')
+  )
+)
+
+/*
+<div>
+  <h2>関連記事</h2>
+  <p>記事が見つかりませんでした。</p>
+</div>
+*/
+```
+
 #### `attrs`
 
 `attrs`プロパティを持ち、その値が入力引数であるオブジェクトを返します。
