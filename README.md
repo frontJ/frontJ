@@ -70,13 +70,13 @@ HTMLファイルの出力には[@frontj/builder](https://github.com/frontJ/build
 
 ### Methods
 
-#### `_if`
+#### `$if`
 
 `condition`引数の値によって`value`または`elseValue`の値を返します。
 [`FrontJElement`](#frontjelement)関数内で値を出し分ける際に有用です。
 
 ```typescript
-_if(condition: boolean, value: string, elseValue = ''): string
+$if(condition: boolean, value: string, elseValue = ''): string
 ```
 
 | 引数 | 説明 |
@@ -90,7 +90,7 @@ const hasPosts = false
 
 div(
   h2('関連記事'),
-  _if(hasPosts,
+  $if(hasPosts,
     article(/* ... */),
     p('記事が見つかりませんでした。')
   )

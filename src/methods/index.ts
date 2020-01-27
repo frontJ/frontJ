@@ -1,7 +1,7 @@
-import { _if } from './_if'
+import { $if } from './$if'
 import { createElement } from './createElement'
 
 export {
-  _if,
+  $if,
   createElement
 }
