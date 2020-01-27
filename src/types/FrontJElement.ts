@@ -1,6 +1,11 @@
-import { FrontJElementOptions } from './index'
-
-export type FrontJElement = (
-  optionsOrContent?: FrontJElementOptions | string,
-  ...contents: string[]
-) => string
+export type FrontJElement = {
+  (
+    ...contents: (string | number)[]
+  ): string;
+  $: (
+    strings: TemplateStringsArray,
+    ...values: (string | number)[]
+  ) => (
+    ...contents: (string | number)[]
+  ) => string;
+}

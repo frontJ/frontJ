@@ -1,43 +1,38 @@
 import { FrontJCreateElementOptions, FrontJElement } from '../types'
 import { defaultCreateElementOptions } from '../constants'
-import { createAttrString, isFrontJElementOptions, isString } from '../functions'
+import { createAttrString } from '../functions'
 
 export function createElement (
   name: string,
   createElementOptions: FrontJCreateElementOptions = defaultCreateElementOptions
 ): FrontJElement {
-  return (optionsOrContent, ...contents) => {
-    // optionsOrContentにオプションが渡された場合
-    if (isFrontJElementOptions(optionsOrContent)) {
-      const options = optionsOrContent
-      const attrString = createAttrString(options?.attrs)
-
-      // children: trueの場合は子要素あり、そうでない場合は子要素なし(入力しても無視)かつ閉じタグなし
-      if (createElementOptions.children) {
-        const content = contents.join('')
-        return `${name === 'html' ? '<!DOCTYPE html>' : ''}<${name}${attrString ? ` ${attrString}` : ''}>${content}</${name}>`
-      } else {
-        return `<${name}${attrString ? ` ${attrString}` : ''}>`
-      }
-    }
-
-    // optionsOrContentに文字列が渡された場合
-    if (isString(optionsOrContent)) {
-      // children: trueの場合は子要素あり、そうでない場合は子要素なし(入力しても無視)かつ閉じタグなし
-      if (createElementOptions.children) {
-        const content = optionsOrContent + contents.join('')
-        return `${name === 'html' ? '<!DOCTYPE html>' : ''}<${name}>${content}</${name}>`
-      } else {
-        return `<${name}>`
-      }
-    }
-
-    // 何も渡されなかった場合
+  const ret: FrontJElement = (...contents) => {
     if (createElementOptions.children) {
+      const content = contents.length ? contents.join('') : ''
       // children: trueの場合は閉じタグあり、そうでない場合は閉じタグなし
-      return `${name === 'html' ? '<!DOCTYPE html>' : ''}<${name}></${name}>`
+      return `${name === 'html' ? '<!DOCTYPE html>' : ''}<${name}>${content}</${name}>`
     } else {
       return `<${name}>`
     }
   }
+
+  ret.$ = (strings, ...values) => {
+    // 入力されたstringsやvaluesを一つの文字列に結合
+    const input = strings.reduce((prev, current, index) => {
+      return prev + current + (values[index] ? values[index] : '')
+    }, '')
+    const attrs = input === '' ? '' : ` ${createAttrString(input)}`
+
+    return (...contents) => {
+      if (createElementOptions.children) {
+        const content = contents.length ? contents.join('') : ''
+        // children: trueの場合は閉じタグあり、そうでない場合は閉じタグなし
+        return `${name === 'html' ? '<!DOCTYPE html>' : ''}<${name}${attrs}>${content}</${name}>`
+      } else {
+        return `<${name}${attrs}>`
+      }
+    }
+  }
+
+  return ret
 }
