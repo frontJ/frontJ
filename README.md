@@ -126,24 +126,24 @@ createElement(name: string, options: FrontJCreateElementOptions): FrontJElement
 ```typescript
 // `FrontJElement`の部分は実際にはタグ名などになります。
 
-FrontJElement(...contents: string[]): string
+FrontJElement(...contents: (string | number)[]): string
 
 // 要素の属性を設定する場合は`$`メソッドを使用します。
 
-FrontJElement.$`TemplateStrings`: (...contents: string[]) => string
+FrontJElement.$`TemplateStrings`: (...contents: (string | number)[]) => string
 ```
 
 | 引数 | 説明 |
 | --- | --- |
-| contents | 省略可能で、カンマ区切りで文字列を渡せます。渡された文字列は結合されHTML要素内に出力されます。 |
+| contents | 省略可能で、カンマ区切りで文字列または数値を渡せます。渡された値は結合されHTML要素内に出力されます。 |
 | TemplateStrings | CSSセレクタのような文字列を渡して、要素の属性を設定することができます。 |
 
 ```typescript
 const div = createElement('div')
 
-div('Hello') // => <div>Hello</div>
+div('Hello', 1) // => <div>Hello1</div>
 
-div.$`#id.class`('Hello') // => <div id="id" class="class">Hello</div>
+div.$`#id.class`('Hello', 1) // => <div id="id" class="class">Hello1</div>
 ```
 
 ### Types
