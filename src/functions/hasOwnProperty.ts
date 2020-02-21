@@ -1,3 +1,3 @@
-export function hasOwnProperty (object: {}, property: string | number | symbol): boolean {
-  return Object.hasOwnProperty.call(object, property)
+export function hasOwnProperty (arg: unknown, property: string | number | symbol): boolean {
+  return Object.hasOwnProperty.call(arg, property)
 }
