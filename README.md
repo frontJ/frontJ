@@ -23,7 +23,7 @@ const br = createElement('br', { children: false })
 const input = createElement('input', { children: false })
 const div = createElement('div')
 
-const text = (...contents) => p.$`.text`(
+const text = (...contents) => p`.text`(
   ...contents
 )
 
@@ -32,10 +32,10 @@ const contents = html(
     title('frontJ example.'),
   ),
   body(
-    h1.$`.heading`('Hello!'),
+    h1`.heading`('Hello!'),
     text('foo', br(), 'bar'),
-    input.$`[type="checkbox"][checked]`(),
-    div.$`#id.class1.class2`()
+    input`[type="checkbox"][checked]`(),
+    div`#id.class1.class2`()
   )
 )
 
@@ -128,22 +128,24 @@ createElement(name: string, options: FrontJCreateElementOptions): FrontJElement
 
 FrontJElement(...contents: (string | number)[]): string
 
-// 要素の属性を設定する場合は`$`メソッドを使用します。
+// 要素の属性を設定する場合はテンプレート文字列を使用します。
 
-FrontJElement.$`TemplateStrings`: (...contents: (string | number)[]) => string
+FrontJElement`TemplateStrings`: (...contents: (string | number)[]) => string
 ```
 
 | 引数 | 説明 |
 | --- | --- |
 | contents | 省略可能で、カンマ区切りで文字列または数値を渡せます。渡された値は結合されHTML要素内に出力されます。 |
-| TemplateStrings | CSSセレクタのような文字列を渡して、要素の属性を設定することができます。 |
+| TemplateStrings | CSSセレクタのような文字列を渡して、要素の属性を設定することができます。`${}`には文字列または数値を入力できます。 |
 
 ```typescript
 const div = createElement('div')
 
 div('Hello', 1) // => <div>Hello1</div>
 
-div.$`#id.class`('Hello', 1) // => <div id="id" class="class">Hello1</div>
+div`#id.class`('Hello', 1) // => <div id="id" class="class">Hello1</div>
+
+div`#id${'1'}.class${1}`('Hello', 1) // => <div id="id1" class="class1">Hello1</div>
 ```
 
 ### Types
