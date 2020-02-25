@@ -76,7 +76,7 @@ HTMLファイルの出力には[@frontj/builder](https://github.com/frontJ/build
 [`FrontJElement`](#frontjelement)関数内で値を出し分ける際に有用です。
 
 ```typescript
-$if(condition: boolean, value: string, elseValue = ''): string
+$if(condition: boolean, value: string | number, elseValue: string | number = ''): string | number
 ```
 
 | 引数 | 説明 |
