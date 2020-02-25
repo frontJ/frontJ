@@ -4,7 +4,11 @@ import { isArray } from './isArray'
 import { isArrayOfTagFunctionArguments } from './isArrayOfTagFunctionArguments'
 import { isFrontJAttrsObject } from './isFrontJAttrsObject'
 import { isNull } from './isNull'
+import { isNullable } from './isNullable'
 import { isString } from './isString'
+import { isUndefined } from './isUndefined'
+import { validateFrontJElementAttrsValuesType } from './validateFrontJElementAttrsValuesType'
+import { validateFrontJElementContentsType } from './validateFrontJElementContentsType'
 
 export {
   createAttrString,
@@ -13,5 +17,9 @@ export {
   isArrayOfTagFunctionArguments,
   isFrontJAttrsObject,
   isNull,
-  isString
+  isNullable,
+  isString,
+  isUndefined,
+  validateFrontJElementAttrsValuesType,
+  validateFrontJElementContentsType
 }

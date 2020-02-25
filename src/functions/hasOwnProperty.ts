@@ -1,3 +1,5 @@
+import { isNullable } from './index'
+
 export function hasOwnProperty (arg: unknown, property: string | number | symbol): boolean {
-  return Object.hasOwnProperty.call(arg, property)
+  return !isNullable(arg) && Object.hasOwnProperty.call(arg, property)
 }

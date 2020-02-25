@@ -1,6 +1,11 @@
 import { FrontJCreateElementOptions, FrontJElement } from '../types'
 import { defaultCreateElementOptions } from '../constants'
-import { createAttrString, isArrayOfTagFunctionArguments } from '../functions'
+import {
+  createAttrString,
+  isArrayOfTagFunctionArguments,
+  validateFrontJElementAttrsValuesType,
+  validateFrontJElementContentsType
+} from '../functions'
 
 export function createElement (
   name: string,
@@ -12,6 +17,9 @@ export function createElement (
     // contentsがタグ関数の引数の配列の場合
     if (isArrayOfTagFunctionArguments(contents)) {
       const [strings, ...values] = contents
+      if (values.length) {
+        validateFrontJElementAttrsValuesType(values)
+      }
       // 入力されたstringsやvaluesを一つの文字列に結合
       const input = strings.reduce((prev, current, index) => {
         return prev + current + (values[index] ? values[index] : '')
@@ -19,6 +27,10 @@ export function createElement (
       const attrs = input === '' ? '' : ` ${createAttrString(input)}`
 
       return (...contents: (string | number)[]) => {
+        if (contents.length) {
+          validateFrontJElementContentsType(contents)
+        }
+
         if (createElementOptions.children) {
           const content = contents.length ? contents.join('') : ''
           // children: trueの場合は閉じタグあり、そうでない場合は閉じタグなし
@@ -27,6 +39,10 @@ export function createElement (
           return `<${name}${attrs}>`
         }
       }
+    }
+
+    if (contents.length) {
+      validateFrontJElementContentsType(contents)
     }
 
     if (createElementOptions.children) {
