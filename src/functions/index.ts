@@ -7,6 +7,7 @@ import { isNull } from './isNull'
 import { isNullable } from './isNullable'
 import { isString } from './isString'
 import { isUndefined } from './isUndefined'
+import { validate$ifArgumentsType } from './validate$ifArgumentsType'
 import { validateFrontJElementAttrsValuesType } from './validateFrontJElementAttrsValuesType'
 import { validateFrontJElementContentsType } from './validateFrontJElementContentsType'
 
@@ -20,6 +21,7 @@ export {
   isNullable,
   isString,
   isUndefined,
+  validate$ifArgumentsType,
   validateFrontJElementAttrsValuesType,
   validateFrontJElementContentsType
 }
