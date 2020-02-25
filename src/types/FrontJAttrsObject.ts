@@ -1,3 +1,3 @@
 export interface FrontJAttrsObject {
-  [attrName: string]: string | string[];
+  [attrName: string]: string[];
 }

@@ -1,7 +1,6 @@
 import { FrontJAttrsObject } from '../types'
 import {
   hasOwnProperty,
-  isArray,
   isNull
 } from './index'
 
@@ -9,37 +8,21 @@ import {
 function fromObject (attrs: FrontJAttrsObject): string {
   const attrNames = Object.keys(attrs)
 
-  if (attrNames.length === 0) return ''
-
   return attrNames.map((attrName) => {
-    const _attrValue = attrs[attrName]
-    let attrValue: string
+    const _attrValues = attrs[attrName]
 
-    // 属性の値が空文字の場合は属性名のみ返す(checked属性などを想定)
-    if (_attrValue === '') {
+    // 属性の値が空配列の場合属性名のみ返す
+    if (_attrValues.length === 0) {
       return `${attrName}`
     }
-
-    if (isArray(_attrValue)) {
-      // 属性の値が空配列の場合も属性名のみ返す
-      if (_attrValue.length === 0) {
-        return `${attrName}`
-      }
-      attrValue = _attrValue.join(' ')
-    } else {
-      attrValue = _attrValue
-    }
+    const attrValue = _attrValues.join(' ')
 
     return `${attrName}="${attrValue}"`
   }).join(' ')
 }
 
-export function createAttrString (attrs: string): string {
+export function createAttrString (selector: string): string {
   const _attrs: FrontJAttrsObject = {}
-
-  // 変数名を変更
-  const selector = attrs
-
   const attrRegExp = /\[.*?\](?=(\[|#|\.|$))/g
 
   // 属性値([])があれば先に取得し、元の文字列から取り除く
@@ -62,12 +45,9 @@ export function createAttrString (attrs: string): string {
       }
 
       if (!hasOwnProperty(_attrs, attrName)) {
-        // この属性名のプロパティが存在しなければ作成
         _attrs[attrName] = attrValueMatches ?? []
-      } else if (!isNull(attrValueMatches)) {
-        // この属性名のプロパティが既に存在していればpush
-        // 前のif文で_attrs[attrName]はstring[]になっているのでasを使う
-        (_attrs[attrName] as string[]).push(attrValueMatches[0])
+      } else {
+        _attrs[attrName].push(...(attrValueMatches ?? []))
       }
     })
   }
@@ -83,7 +63,7 @@ export function createAttrString (attrs: string): string {
     if (!hasOwnProperty(_attrs, 'id')) {
       _attrs.id = idValueMatches
     } else {
-      (_attrs.id as string[]).push(idValueMatches[0])
+      _attrs.id.push(...idValueMatches)
     }
   }
 
@@ -92,7 +72,7 @@ export function createAttrString (attrs: string): string {
     if (!hasOwnProperty(_attrs, 'class')) {
       _attrs.class = classValueMatches
     } else {
-      (_attrs.class as string[]).push(classValueMatches[0])
+      _attrs.class.push(...classValueMatches)
     }
   }
 
