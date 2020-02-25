@@ -1,6 +1,6 @@
 import { FrontJCreateElementOptions, FrontJElement } from '../types'
 import { defaultCreateElementOptions } from '../constants'
-import { createAttrString, hasOwnProperty, isArray } from '../functions'
+import { createAttrString, isArrayOfTagFunctionArguments } from '../functions'
 
 export function createElement (
   name: string,
@@ -8,10 +8,10 @@ export function createElement (
 ): FrontJElement {
   function ret (...contents: (string | number)[]): string
   function ret (strings: TemplateStringsArray, ...values: (string | number)[]): (...contents: (string | number)[]) => string;
-  function ret (...contents: unknown[]) {
-    // contents[0]がTemplateStringsArrayの場合
-    if (isArray(contents[0]) && hasOwnProperty(contents[0], 'raw')) {
-      const [strings, ...values] = (contents as [TemplateStringsArray, ...(string | number)[]])
+  function ret (...contents: [TemplateStringsArray, ...(string | number)[]] | (string | number)[]) {
+    // contentsがタグ関数の引数の配列の場合
+    if (isArrayOfTagFunctionArguments(contents)) {
+      const [strings, ...values] = contents
       // 入力されたstringsやvaluesを一つの文字列に結合
       const input = strings.reduce((prev, current, index) => {
         return prev + current + (values[index] ? values[index] : '')
