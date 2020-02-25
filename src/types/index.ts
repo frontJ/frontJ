@@ -1,9 +1,3 @@
-import { FrontJAttrsObject } from './FrontJAttrsObject'
-import { FrontJCreateElementOptions } from './FrontJCreateElementOptions'
-import { FrontJElement } from './FrontJElement'
-
-export {
-  FrontJAttrsObject,
-  FrontJCreateElementOptions,
-  FrontJElement
-}
+export { FrontJAttrsObject } from './FrontJAttrsObject'
+export { FrontJCreateElementOptions } from './FrontJCreateElementOptions'
+export { FrontJElement } from './FrontJElement'

@@ -1,7 +1,2 @@
-import { $if } from './$if'
-import { createElement } from './createElement'
-
-export {
-  $if,
-  createElement
-}
+export { $if } from './$if'
+export { createElement } from './createElement'

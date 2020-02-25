@@ -1,5 +1,1 @@
-import { defaultCreateElementOptions } from './defaultCreateElementOptions'
-
-export {
-  defaultCreateElementOptions
-}
+export { defaultCreateElementOptions } from './defaultCreateElementOptions'
