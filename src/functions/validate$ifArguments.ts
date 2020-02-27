@@ -1,6 +1,6 @@
 import { isBoolean, isNumber, isString } from './index'
 
-export function validate$ifArgumentsType (condition: unknown, value: unknown, elseValue: unknown) {
+export function validate$ifArguments (condition: unknown, value: unknown, elseValue: unknown) {
   if (!isBoolean(condition)) {
     throw new Error('condition is must be boolean.')
   }

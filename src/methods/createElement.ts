@@ -3,8 +3,8 @@ import { defaultCreateElementOptions } from '../constants'
 import {
   createAttrString,
   isArrayOfTagFunctionArguments,
-  validateFrontJElementAttrsValuesType,
-  validateFrontJElementContentsType
+  validateFrontJElementAttrsValues,
+  validateFrontJElementContents
 } from '../functions'
 
 export function createElement (
@@ -18,7 +18,7 @@ export function createElement (
     if (isArrayOfTagFunctionArguments(contents)) {
       const [strings, ...values] = contents
       if (values.length) {
-        validateFrontJElementAttrsValuesType(values)
+        validateFrontJElementAttrsValues(values)
       }
       // 入力されたstringsやvaluesを一つの文字列に結合
       const input = strings.reduce((prev, current, index) => {
@@ -28,7 +28,7 @@ export function createElement (
 
       return (...contents: (string | number)[]) => {
         if (contents.length) {
-          validateFrontJElementContentsType(contents)
+          validateFrontJElementContents(contents)
         }
 
         if (createElementOptions.children) {
@@ -42,7 +42,7 @@ export function createElement (
     }
 
     if (contents.length) {
-      validateFrontJElementContentsType(contents)
+      validateFrontJElementContents(contents)
     }
 
     if (createElementOptions.children) {
